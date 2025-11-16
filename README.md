@@ -1,6 +1,6 @@
 # Yassine Ouahmane – Data Engineer & Generative AI Portfolio
 
-![Portfolio preview](images/my-prtfolio.png)
+![Portfolio preview](images/my-portfolio.png)
 
 A modern, interactive **single-page portfolio** built with React to showcase my work as a **Data Engineer & Generative AI enthusiast**.
 
