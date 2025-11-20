@@ -291,6 +291,9 @@ function App() {
   );
   const [activeSection, setActiveSection] = useState("hero");
   const [contactIntent, setContactIntent] = useState("project");
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formMessage, setFormMessage] = useState("");
 
   // Smooth scroll to section
   const scrollToSection = (sectionId) => {
@@ -299,6 +302,48 @@ function App() {
       element.scrollIntoView({ behavior: "smooth" });
       setActiveSection(sectionId);
     }
+  };
+
+  // Handle contact form submission
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormSubmitting(true);
+    setFormMessage("");
+
+    try {
+      // Using Web3Forms (free service) - no backend needed
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "1c95983b-4389-48d6-bf40-cf2c5ca51c19",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: "New message from portfolio",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setFormMessage("✅ Message sent successfully! I'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setFormMessage("❌ Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      setFormMessage("❌ Error sending message. Please try again.");
+      console.error(error);
+    } finally {
+      setFormSubmitting(false);
+    }
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   // Load theme preference
@@ -1109,15 +1154,53 @@ function App() {
                   </div>
 
                   <div className="contact-cta">
-                    <button
-                      className="btn btn-primary btn-full"
-                      onClick={() =>
-                        (window.location.href =
-                          "mailto:yassineouahmane2002@gmail.com?subject=Data%20Engineering%20%2F%20Generative%20AI%20project")
-                      }
-                    >
-                      Send me an email
-                    </button>
+                    <form onSubmit={handleFormSubmit} className="contact-form">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="name"
+                          placeholder="Your name"
+                          value={formData.name}
+                          onChange={handleFormChange}
+                          required
+                          className="form-input"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="Your email"
+                          value={formData.email}
+                          onChange={handleFormChange}
+                          required
+                          className="form-input"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <textarea
+                          name="message"
+                          placeholder="Your message"
+                          value={formData.message}
+                          onChange={handleFormChange}
+                          required
+                          className="form-input form-textarea"
+                          rows="4"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-full"
+                        disabled={formSubmitting}
+                      >
+                        {formSubmitting ? "Sending..." : "Send message"}
+                      </button>
+                      {formMessage && (
+                        <div className="form-message">
+                          {formMessage}
+                        </div>
+                      )}
+                    </form>
                   </div>
                 </div>
               </div>
