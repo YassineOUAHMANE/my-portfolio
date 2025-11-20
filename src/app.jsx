@@ -292,6 +292,15 @@ function App() {
   const [activeSection, setActiveSection] = useState("hero");
   const [contactIntent, setContactIntent] = useState("project");
 
+  // Smooth scroll to section
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(sectionId);
+    }
+  };
+
   // Load theme preference
   useEffect(() => {
     const saved =
@@ -322,7 +331,7 @@ function App() {
         <div className="container header-inner">
           <div
             className="logo"
-            onClick={() => setActiveSection("hero")}
+            onClick={() => scrollToSection("hero")}
             role="button"
           >
             <div className="logo-avatar">
@@ -337,16 +346,16 @@ function App() {
           </div>
 
           <nav className="nav">
-            <button onClick={() => setActiveSection("about")}>About</button>
-            <button onClick={() => setActiveSection("skills")}>Skills</button>
-            <button onClick={() => setActiveSection("journey")}>Journey</button>
-            <button onClick={() => setActiveSection("projects")}>
+            <button onClick={() => scrollToSection("about")}>About</button>
+            <button onClick={() => scrollToSection("skills")}>Skills</button>
+            <button onClick={() => scrollToSection("journey")}>Journey</button>
+            <button onClick={() => scrollToSection("projects")}>
               Projects
             </button>
-            <button onClick={() => setActiveSection("experience")}>
+            <button onClick={() => scrollToSection("experience")}>
               Experience
             </button>
-            <button onClick={() => setActiveSection("contact")}>Contact</button>
+            <button onClick={() => scrollToSection("contact")}>Contact</button>
           </nav>
 
           <button
@@ -390,13 +399,13 @@ function App() {
               <div className="hero-actions">
                 <button
                   className="btn btn-primary"
-                  onClick={() => setActiveSection("contact")}
+                  onClick={() => scrollToSection("contact")}
                 >
                   Contact me
                 </button>
                 <button
                   className="btn btn-outline"
-                  onClick={() => setActiveSection("projects")}
+                  onClick={() => scrollToSection("projects")}
                 >
                   View projects
                 </button>

@@ -9,6 +9,7 @@
   --border: #1f2937;
   --chip-bg: rgba(15, 23, 42, 0.9);
   --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.55);
+  scroll-behavior: smooth;
 }
 
 :root[data-theme="light"] {
@@ -2056,71 +2057,28 @@ button {
 /* Main view container: one “page” at a time */
 .main-views {
   position: relative;
-  height: calc(100vh - 60px); /* full viewport minus header */
-  overflow: hidden;           /* hide inactive views */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Each section becomes a full-screen view */
 .view {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  width: 100%;
   display: block;
-  padding: 5rem 0 2.5rem;   /* ⬅️ less top padding = everything higher */
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;  /* smooth momentum scrolling on iOS */
-  min-height: calc(100vh - 60px);
+  padding: 5rem 0 2.5rem;
+  min-height: auto;
+  overflow: visible;
 
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(24px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  will-change: transform, opacity;  /* hardware acceleration for smooth transitions */
-}
-
-.view::-webkit-scrollbar {
-  width: 8px;
-}
-
-.view::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.view::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.4);
-  border-radius: 4px;
-}
-
-.view::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.6);
-}
-
-.view {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(148, 163, 184, 0.4) transparent;
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  transition: none;
 }
 /* The content container inside each view */
 .view > .container {
   width: 100%;
-}
-
-/* Active section – shown with animation */
-.view-active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(0);
-  animation: slideInSmooth 0.35s ease-out;
-}
-
-@keyframes slideInSmooth {
-  from {
-    opacity: 0;
-    transform: translateX(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 /* =========================
