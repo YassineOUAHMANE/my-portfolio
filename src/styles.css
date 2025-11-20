@@ -2066,7 +2066,8 @@ button {
   inset: 0;
   display: block;
   padding: 5rem 0 2.5rem;   /* ⬅️ less top padding = everything higher */
-  overflow-y: auto;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;  /* smooth momentum scrolling on iOS */
   min-height: calc(100vh - 60px);
 
@@ -2078,10 +2079,25 @@ button {
 }
 
 .view::-webkit-scrollbar {
-  display: none;
+  width: 8px;
 }
+
+.view::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.view::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 4px;
+}
+
+.view::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
 .view {
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.4) transparent;
 }
 /* The content container inside each view */
 .view > .container {
