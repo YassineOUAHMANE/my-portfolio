@@ -366,33 +366,7 @@ function App() {
           id="hero"
           className={`hero view ${activeSection === "hero" ? "view-active" : ""}`}
         >
-          <div className="hero-bg-orbits" aria-hidden="true">
-            <div className="orbit orbit-1" />
-            <div className="orbit orbit-2" />
-            <div className="orbit orbit-3" />
-          </div>
-          {/* NEW: animated data workflow */}
-            <div className="hero-data-flow" aria-hidden="true">
-                <div className="hero-data-track">
-                <div className="hero-data-line hero-data-line-1" />
-                <div className="hero-data-line hero-data-line-2" />
-
-                <div className="hero-data-node hero-data-node--left">
-                    <span>Sources</span>
-                </div>
-                <div className="hero-data-node hero-data-node--middle">
-                    <span>Pipelines</span>
-                </div>
-                <div className="hero-data-node hero-data-node--right">
-                    <span>AI layer</span>
-                </div>
-
-                <div className="hero-data-particle hero-data-particle-1" />
-                <div className="hero-data-particle hero-data-particle-2" />
-                <div className="hero-data-particle hero-data-particle-3" />
-                </div>
-            </div>
-
+          
           <div className="container hero-grid">
             <div>
               <p className="hero-chip">
@@ -493,6 +467,33 @@ function App() {
               </ul>
             </aside>
           </div>
+          <div className="hero-bg-orbits" aria-hidden="true">
+            <div className="orbit orbit-1" />
+            <div className="orbit orbit-2" />
+            <div className="orbit orbit-3" />
+          </div>
+          {/* NEW: animated data workflow */}
+            <div className="hero-data-flow" aria-hidden="true">
+                <div className="hero-data-track">
+                <div className="hero-data-line hero-data-line-1" />
+                <div className="hero-data-line hero-data-line-2" />
+
+                <div className="hero-data-node hero-data-node--left">
+                    <span>Sources</span>
+                </div>
+                <div className="hero-data-node hero-data-node--middle">
+                    <span>Pipelines</span>
+                </div>
+                <div className="hero-data-node hero-data-node--right">
+                    <span>AI layer</span>
+                </div>
+
+                <div className="hero-data-particle hero-data-particle-1" />
+                <div className="hero-data-particle hero-data-particle-2" />
+                <div className="hero-data-particle hero-data-particle-3" />
+                </div>
+            </div>
+
         </section>
 
         {/* ABOUT VIEW */}
