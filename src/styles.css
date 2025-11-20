@@ -2019,27 +2019,27 @@ button {
   }
 
   .pipeline-flow {
-    background-size: 300% 100%;
+    background-size: 400% 100%;
     opacity: 0.8;
   }
 
   .pipeline-flow-1 {
-    animation: pipeline-flow-mobile 12s linear infinite;
+    animation: pipeline-flow-mobile 15s linear infinite;
   }
 
   .pipeline-flow-2 {
-    animation: pipeline-flow-mobile 18s linear infinite reverse;
+    animation: pipeline-flow-mobile 20s linear infinite reverse;
     opacity: 0.6;
   }
 
   .pipeline-flow-3 {
-    animation: pipeline-flow-mobile 24s linear infinite;
+    animation: pipeline-flow-mobile 28s linear infinite;
     opacity: 0.35;
   }
 
   @keyframes pipeline-flow-mobile {
     from {
-      background-position: 300% 50%;
+      background-position: 400% 50%;
     }
     to {
       background-position: 0% 50%;
