@@ -1196,9 +1196,9 @@ button {
 
 .journey-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+  grid-template-columns: 1fr;
   gap: 1.8rem;
-  align-items: center;
+  align-items: stretch;
 }
 
 
@@ -1241,6 +1241,7 @@ button {
   background-size: 200% 200%;
   mix-blend-mode: screen;
   opacity: 0.6;
+  will-change: background-position;
 }
 
 .pipeline-flow-1 {
@@ -1388,10 +1389,11 @@ button {
 .journey-details {
   background: var(--bg-softer);
   border-radius: 1rem;
-  padding: 0.9rem 1rem;
+  padding: 1.2rem;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-soft);
   font-size: 0.88rem;
+  width: 100%;
 }
 
 .journey-label {
@@ -1433,28 +1435,6 @@ button {
 }
 
 /* Small screens: allow horizontal scroll if needed */
-
-/* Small screens: allow horizontal scroll if needed */
-
-@media (max-width: 3000px) {
-  .journey-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .pipeline-track {
-    height: 180px;
-  }
-
-  .journey-pipeline {
-    overflow-x: auto;
-  }
-
-  .journey-nodes-row {
-    min-width: 600px;
-    justify-content: space-around;
-  }
-}
-
 
 /* Projects */
 
@@ -2010,6 +1990,38 @@ button {
   .journey-details {
     padding: 0.85rem;
   }
+
+  /* Mobile optimizations for journey pipeline */
+  .journey-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .journey-pipeline {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pipeline-track {
+    height: 140px;
+    padding: 0 20px;
+    overflow: visible;
+  }
+
+  .journey-nodes-row {
+    min-width: 500px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .journey-node {
+    flex-shrink: 0;
+  }
+
+  .journey-details {
+    padding: 0.85rem;
+    margin-top: 0.5rem;
+  }
 }
 /* Main view container: one “page” at a time */
 .main-views {
@@ -2025,12 +2037,14 @@ button {
   display: block;
   padding: 5rem 0 2.5rem;   /* ⬅️ less top padding = everything higher */
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;  /* smooth momentum scrolling on iOS */
   min-height: calc(100vh - 60px);
 
   opacity: 0;
   pointer-events: none;
   transform: translateX(24px);
   transition: opacity 0.35s ease, transform 0.35s ease;
+  will-change: transform, opacity;  /* hardware acceleration for smooth transitions */
 }
 
 .view::-webkit-scrollbar {
