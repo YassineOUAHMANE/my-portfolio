@@ -139,6 +139,18 @@ body::after {
 .hero-bg-gradient {
   position: absolute; inset: 0; pointer-events: none;
 }
+.hero-video-wrap {
+  position: absolute; inset: 0; overflow: hidden;
+}
+.hero-video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+.hero-video-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(5,10,15,0.55) 0%, rgba(5,10,15,0.72) 55%, var(--bg) 100%);
+}
 .hero-blob {
   position: absolute; border-radius: 50%;
   filter: blur(100px); opacity: 0.35;
@@ -443,6 +455,7 @@ body::after {
 .modal-company { font-size: 0.9rem; color: var(--text2); margin-bottom: 1.2rem; }
 .modal-bullets { padding-left: 1.2rem; list-style: disc; margin-bottom: 1.5rem; }
 .modal-bullets li { font-size: 0.9rem; color: var(--text2); line-height: 1.7; margin-bottom: 0.3rem; }
+.modal-desc { font-size: 0.9rem; color: var(--text2); line-height: 1.75; margin-bottom: 1.5rem; }
 .modal-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.5rem; }
 .modal-tech span {
   font-size: 0.72rem; padding: 4px 12px;
@@ -593,6 +606,15 @@ body::after {
   font-weight: 600; margin-bottom: 0.2rem;
 }
 .reel-card-title { font-weight: 700; font-size: 0.9rem; }
+.reel-card-hint {
+  display: flex; align-items: center; gap: 0.35rem;
+  margin-top: 0.5rem;
+  font-size: 0.66rem; color: var(--accent);
+  font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.reel-card-hint .arrow { display: inline-block; transition: transform 0.3s; }
+.reel-card:hover .reel-card-hint .arrow { transform: translateX(4px); }
 
 /* ================================================================
    SKILLS
@@ -795,6 +817,12 @@ body::after {
 <!-- ============================================================ -->
 <section class="hero" id="hero">
   <div class="hero-bg-gradient">
+    <div class="hero-video-wrap">
+      <video class="hero-video" autoplay muted loop playsinline poster="img/profile.png">
+        <source src="img/hero-intro.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay"></div>
+    </div>
     <div class="hero-blob hero-blob-1"></div>
     <div class="hero-blob hero-blob-2"></div>
   </div>
@@ -1032,6 +1060,7 @@ body::after {
       <div>
         <div class="sec-num g-up">04 / Highlights</div>
         <div class="sec-title g-up">Moments that define me.</div>
+        <div class="g-up" style="color:var(--text2); font-size:0.85rem; margin-top:0.4rem;">Click any moment to see the full story.</div>
       </div>
       <div class="sec-sub g-up" style="margin-bottom:0; text-align:right;">Scroll &rarr;</div>
     </div>
@@ -1039,34 +1068,34 @@ body::after {
   <div style="padding-left: clamp(1.2rem, 5vw, 3rem);">
     <div class="reel-scroll-track" id="reelTrack">
 
-      <a href="https://www.linkedin.com/feed/update/urn:li:activity:7289336614357467136/" target="_blank" class="reel-card" style="text-decoration:none; color:inherit;"><img src="img/hackathon-1.jpeg" alt="Hackathon winners"><div class="reel-card-info"><div class="reel-card-tag">Hackathon</div><div class="reel-card-title">Operate & Excel Winners - UM6P</div></div></a>
+      <div class="reel-card" data-moment="hackathon1"><img src="img/hackathon-1.jpeg" alt="Hackathon winners"><div class="reel-card-info"><div class="reel-card-tag">Hackathon</div><div class="reel-card-title">Operate & Excel Winners - UM6P</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
-      <a href="https://www.linkedin.com/posts/yassineouahmane_19th-citclub-jnjd2025-activity-7328215890280263680-0nj2" target="_blank" class="reel-card" style="text-decoration:none; color:inherit;"><img src="img/jnjd-vp.jpeg" alt="JNJD VP"><div class="reel-card-info"><div class="reel-card-tag">Leadership</div><div class="reel-card-title">VP of JNJD - CIT INPT</div></div></a>
+      <div class="reel-card" data-moment="jnjdVp"><img src="img/jnjd-vp.jpeg" alt="JNJD VP"><div class="reel-card-info"><div class="reel-card-tag">Leadership</div><div class="reel-card-title">VP of JNJD - CIT INPT</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
-      <div class="reel-card"><img src="img/sport-1.jpeg" alt="Football champion"><div class="reel-card-info"><div class="reel-card-tag">Sports</div><div class="reel-card-title">Football Champion</div></div></div>
+      <div class="reel-card" data-moment="football"><img src="img/sport-1.jpeg" alt="Football champion"><div class="reel-card-info"><div class="reel-card-tag">Sports</div><div class="reel-card-title">Football Champion</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
-      <a href="https://www.linkedin.com/posts/yassineouahmane_gitexafrica2024-generativeai-web3-activity-7203410757831507969-nUSA" target="_blank" class="reel-card" style="text-decoration:none; color:inherit;"><img src="img/gitex-2.jpeg" alt="GITEX Africa"><div class="reel-card-info"><div class="reel-card-tag">Tech Events</div><div class="reel-card-title">GITEX Africa</div></div></a>
+      <div class="reel-card" data-moment="gitex"><img src="img/gitex-2.jpeg" alt="GITEX Africa"><div class="reel-card-info"><div class="reel-card-tag">Tech Events</div><div class="reel-card-title">GITEX Africa</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
-      <a href="https://www.linkedin.com/feed/update/urn:li:activity:7187756652815622144/" target="_blank" class="reel-card" style="text-decoration:none; color:inherit;"><img src="img/enactus-1.jpeg" alt="Enactus"><div class="reel-card-info"><div class="reel-card-tag">Community</div><div class="reel-card-title">Enactus INPT</div></div></a>
+      <div class="reel-card" data-moment="enactus"><img src="img/enactus-1.jpeg" alt="Enactus"><div class="reel-card-info"><div class="reel-card-tag">Community</div><div class="reel-card-title">Enactus INPT</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
-      <a href="https://www.linkedin.com/feed/update/urn:li:activity:7256962839691644930/" target="_blank" class="reel-card" style="width:340px; text-decoration:none; color:inherit;">
+      <div class="reel-card" data-moment="dataTeamLead" style="width:340px;">
         <video src="img/Data-Team-Lead.mp4" style="width:100%; height:220px; object-fit:cover;" muted autoplay loop playsinline></video>
-        <div class="reel-card-info"><div class="reel-card-tag">Leadership</div><div class="reel-card-title">CIT Club - Data Team Lead</div></div>
-      </a>
+        <div class="reel-card-info"><div class="reel-card-tag">Leadership</div><div class="reel-card-title">CIT Club - Data Team Lead</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div>
+      </div>
 
-      <a href="https://www.linkedin.com/posts/yassineouahmane_%F0%9D%97%94%F0%9D%98%81%F0%9D%98%81%F0%9D%97%B2%F0%9D%97%BB%F0%9D%98%81%F0%9D%97%B6%F0%9D%97%BC%F0%9D%97%BB-%F0%9D%97%B0%F0%9D%98%86%F0%9D%97%AF%F0%9D%97%B2%F0%9D%97%BF-%F0%9D%98%84%F0%9D%97%AE%F0%9D%97%BF%F0%9D%97%BF%F0%9D%97%B6%F0%9D%97%BC%F0%9D%97%BF%F0%9D%98%80-activity-7315168726448824322-GZbf" target="_blank" class="reel-card" style="text-decoration:none; color:inherit;"><img src="img/cit-3.jpeg" alt="CIT"><div class="reel-card-info"><div class="reel-card-tag">Leadership</div><div class="reel-card-title">VP of IDEH - CIT INPT</div></div></a>
+      <div class="reel-card" data-moment="citIdeh1"><img src="img/cit-3.jpeg" alt="CIT"><div class="reel-card-info"><div class="reel-card-tag">Leadership</div><div class="reel-card-title">VP of IDEH - CIT INPT</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
-      <a href="https://www.linkedin.com/posts/yassineouahmane_%F0%9D%97%94%F0%9D%98%81%F0%9D%98%81%F0%9D%97%B2%F0%9D%97%BB%F0%9D%98%81%F0%9D%97%B6%F0%9D%97%BC%F0%9D%97%BB-%F0%9D%97%B0%F0%9D%98%86%F0%9D%97%AF%F0%9D%97%B2%F0%9D%97%BF-%F0%9D%98%84%F0%9D%97%AE%F0%9D%97%BF%F0%9D%97%BF%F0%9D%97%B6%F0%9D%97%BC%F0%9D%97%BF%F0%9D%98%80-activity-7315168726448824322-GZbf" target="_blank" class="reel-card" style="text-decoration:none; color:inherit;"><img src="img/cit-6.jpeg" alt="CIT"><div class="reel-card-info"><div class="reel-card-tag">Leadership</div><div class="reel-card-title">VP of IDEH - CIT INPT</div></div></a>
+      <div class="reel-card" data-moment="citIdeh2"><img src="img/cit-6.jpeg" alt="CIT"><div class="reel-card-info"><div class="reel-card-tag">Leadership</div><div class="reel-card-title">VP of IDEH - CIT INPT</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
-      <div class="reel-card"><img src="img/cit-4.jpeg" alt="CIT INPT"><div class="reel-card-info"><div class="reel-card-tag">Leadership</div><div class="reel-card-title">CIT INPT</div></div></div>
+      <div class="reel-card" data-moment="citInpt"><img src="img/cit-4.jpeg" alt="CIT INPT"><div class="reel-card-info"><div class="reel-card-tag">Leadership</div><div class="reel-card-title">CIT INPT</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
-      <div class="reel-card"><img src="img/sport-um6p-1.jpeg" alt="Engineers Sport Games"><div class="reel-card-info"><div class="reel-card-tag">Sports</div><div class="reel-card-title">Engineers Sport Games</div></div></div>
+      <div class="reel-card" data-moment="sportUm6p"><img src="img/sport-um6p-1.jpeg" alt="Engineers Sport Games"><div class="reel-card-info"><div class="reel-card-tag">Sports</div><div class="reel-card-title">Engineers Sport Games</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
-      <a href="https://www.linkedin.com/feed/update/urn:li:activity:7289688775171997696/" target="_blank" class="reel-card" style="text-decoration:none; color:inherit;"><img src="img/hackathon-3.jpeg" alt="Hackathon"><div class="reel-card-info"><div class="reel-card-tag">Hackathon</div><div class="reel-card-title">Hackathon Moment</div></div></a>
+      <div class="reel-card" data-moment="hackathon3"><img src="img/hackathon-3.jpeg" alt="Hackathon"><div class="reel-card-info"><div class="reel-card-tag">Hackathon</div><div class="reel-card-title">Hackathon Moment</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
-      <a href="https://www.linkedin.com/posts/cit-inpt_cit-lmvappdemoday-digitalinnovation-ugcPost-7295463579871293441-3WJc" target="_blank" class="reel-card" style="text-decoration:none; color:inherit;"><img src="img/marocaine-3.jpeg" alt="Community"><div class="reel-card-info"><div class="reel-card-tag">Community</div><div class="reel-card-title">La Marocaine de Vie</div></div></a>
+      <div class="reel-card" data-moment="marocaine"><img src="img/marocaine-3.jpeg" alt="Community"><div class="reel-card-info"><div class="reel-card-tag">Community</div><div class="reel-card-title">La Marocaine de Vie</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
-      <a href="https://www.linkedin.com/posts/yassineouahmane_aws-certified-cloud-practitioner-was-issued-activity-7357702805043773441-Lwxn" target="_blank" class="reel-card" style="text-decoration:none; color:inherit;"><img src="img/aws-1.jpeg" alt="AWS Prep"><div class="reel-card-info"><div class="reel-card-tag">Growth</div><div class="reel-card-title">AWS Achievement</div></div></a>
+      <div class="reel-card" data-moment="awsAchievement"><img src="img/aws-1.jpeg" alt="AWS Prep"><div class="reel-card-info"><div class="reel-card-tag">Growth</div><div class="reel-card-title">AWS Achievement</div><div class="reel-card-hint">Full story <span class="arrow">&rarr;</span></div></div></div>
 
     </div>
   </div>
@@ -1216,7 +1245,7 @@ const EXP_DATA = {
       "Applied data engineering and software development skills in a global enterprise environment.",
       "Collaborated with international teams on production-grade systems and internal tools."
     ],
-    tech: ["Python", "Software Engineering", "Enterprise Systems", "CI/CD"],
+    tech: ["Python", "Software Engineering", "Enterprise Systems", "CI/CD", "Design Patterns", "Communication", "Bridge: Business & AI Automation", "Google Cloud"],
     images: ["img/airliquide-1.jpeg"],
     link: "https://www.linkedin.com/feed/update/urn:li:activity:7424173442733850624/"
   },
@@ -1269,6 +1298,101 @@ const EXP_DATA = {
     ],
     tech: ["Power BI", "SQL", "Python", "Dashboards", "Reporting"],
     images: []
+  }
+};
+
+/* ---- Moments data for "define me" modal (draft copy - personalize freely) ---- */
+const MOMENTS_DATA = {
+  hackathon1: {
+    tag: "Hackathon",
+    title: "Operate & Excel Winners - UM6P",
+    desc: "Placed first at the Operate & Excel hackathon hosted at UM6P, working through a tight deadline with my team to design, build, and pitch a working solution to a panel of judges from industry.",
+    image: "img/hackathon-1.jpeg",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7289336614357467136/"
+  },
+  jnjdVp: {
+    tag: "Leadership",
+    title: "VP of JNJD - CIT INPT",
+    desc: "Served as Vice President for the 19th edition of JNJD (Journees Nationales des Jeunes Diplomes) with CIT Club INPT, helping organize one of the club's flagship national events end to end.",
+    image: "img/jnjd-vp.jpeg",
+    link: "https://www.linkedin.com/posts/yassineouahmane_19th-citclub-jnjd2025-activity-7328215890280263680-0nj2"
+  },
+  football: {
+    tag: "Sports",
+    title: "Football Champion",
+    desc: "Football has always kept me grounded outside of engineering. Winning this tournament reminded me that the same discipline and teamwork that make a good project also make a good team on the field.",
+    image: "img/sport-1.jpeg",
+    link: null
+  },
+  gitex: {
+    tag: "Tech Events",
+    title: "GITEX Africa",
+    desc: "Attended GITEX Africa, immersing myself in conversations around Generative AI and Web3 with founders, engineers, and investors from across the continent.",
+    image: "img/gitex-2.jpeg",
+    link: "https://www.linkedin.com/posts/yassineouahmane_gitexafrica2024-generativeai-web3-activity-7203410757831507969-nUSA"
+  },
+  enactus: {
+    tag: "Community",
+    title: "Enactus INPT",
+    desc: "Active member of Enactus INPT, contributing to social entrepreneurship projects that use business and tech skills to create real impact in local communities.",
+    image: "img/enactus-1.jpeg",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7187756652815622144/"
+  },
+  dataTeamLead: {
+    tag: "Leadership",
+    title: "CIT Club - Data Team Lead",
+    desc: "Led the Data team at CIT Club INPT, mentoring members on data engineering and analytics projects and setting the technical direction for the team's initiatives throughout the year.",
+    image: null,
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7256962839691644930/"
+  },
+  citIdeh1: {
+    tag: "Leadership",
+    title: "VP of IDEH - CIT INPT",
+    desc: "Vice President of IDEH within CIT Club INPT, driving the club's innovation and digital entrepreneurship initiatives and representing the team at national events.",
+    image: "img/cit-3.jpeg",
+    link: "https://www.linkedin.com/posts/yassineouahmane_%F0%9D%97%94%F0%9D%98%81%F0%9D%98%81%F0%9D%97%B2%F0%9D%97%BB%F0%9D%98%81%F0%9D%97%B6%F0%9D%97%BC%F0%9D%97%BB-%F0%9D%97%B0%F0%9D%98%86%F0%9D%97%AF%F0%9D%97%B2%F0%9D%97%BF-%F0%9D%98%84%F0%9D%97%AE%F0%9D%97%BF%F0%9D%97%BF%F0%9D%97%B6%F0%9D%97%BC%F0%9D%97%BF%F0%9D%98%80-activity-7315168726448824322-GZbf"
+  },
+  citIdeh2: {
+    tag: "Leadership",
+    title: "VP of IDEH - CIT INPT",
+    desc: "Another moment from the same season as VP of IDEH - CIT Club INPT, working alongside a team I'm proud to have built and led.",
+    image: "img/cit-6.jpeg",
+    link: "https://www.linkedin.com/posts/yassineouahmane_%F0%9D%97%94%F0%9D%98%81%F0%9D%98%81%F0%9D%97%B2%F0%9D%97%BB%F0%9D%98%81%F0%9D%97%B6%F0%9D%97%BC%F0%9D%97%BB-%F0%9D%97%B0%F0%9D%98%86%F0%9D%97%AF%F0%9D%97%B2%F0%9D%97%BF-%F0%9D%98%84%F0%9D%97%AE%F0%9D%97%BF%F0%9D%97%BF%F0%9D%97%B6%F0%9D%97%BC%F0%9D%97%BF%F0%9D%98%80-activity-7315168726448824322-GZbf"
+  },
+  citInpt: {
+    tag: "Leadership",
+    title: "CIT INPT",
+    desc: "A snapshot from my time with CIT Club INPT - one of the many team moments that shaped my growth as an engineer and a leader during my years at INPT.",
+    image: "img/cit-4.jpeg",
+    link: null
+  },
+  sportUm6p: {
+    tag: "Sports",
+    title: "Engineers Sport Games",
+    desc: "Competed at the Engineers Sport Games hosted by UM6P, representing INPT alongside students from engineering schools across Morocco.",
+    image: "img/sport-um6p-1.jpeg",
+    link: null
+  },
+  hackathon3: {
+    tag: "Hackathon",
+    title: "Hackathon Moment",
+    desc: "Another hackathon, another sprint of building under pressure - these events are where I learned to turn an idea into a working prototype in a matter of hours.",
+    image: "img/hackathon-3.jpeg",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7289688775171997696/"
+  },
+  marocaine: {
+    tag: "Community",
+    title: "La Marocaine de Vie",
+    desc: "Took part in the 'La Marocaine de Vie' demo day with CIT Club INPT, showcasing digital innovation projects built by students to a wider community and industry audience.",
+    image: "img/marocaine-3.jpeg",
+    link: "https://www.linkedin.com/posts/cit-inpt_cit-lmvappdemoday-digitalinnovation-ugcPost-7295463579871293441-3WJc"
+  },
+  awsAchievement: {
+    tag: "Growth",
+    title: "AWS Achievement",
+    desc: "Earned the AWS Certified Cloud Practitioner certification, formalizing the cloud fundamentals I'd already been applying across my data engineering projects.",
+    image: "img/aws-1.jpeg",
+    link: "https://www.linkedin.com/posts/yassineouahmane_aws-certified-cloud-practitioner-was-issued-activity-7357702805043773441-Lwxn"
   }
 };
 
@@ -1462,9 +1586,38 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeLB(); closeModal(); }
 });
 
-/* ---- Reel card click -> lightbox ---- */
-document.querySelectorAll('.reel-card img').forEach(img => {
-  img.addEventListener('click', () => openLB(img));
+/* ================================================================
+   MOMENT MODAL (reel cards - "click to write more about the moment")
+   ================================================================ */
+document.querySelectorAll('.reel-card[data-moment]').forEach(card => {
+  card.addEventListener('click', () => {
+    const key = card.dataset.moment;
+    const d = MOMENTS_DATA[key];
+    if (!d) return;
+
+    let galleryHTML = '';
+    if (d.image) {
+      galleryHTML = `
+        <div class="modal-gallery-label">Photo</div>
+        <div class="modal-gallery">
+          <img src="${d.image}" alt="" onclick="openLB(this)">
+        </div>`;
+    }
+    let linkHTML = '';
+    if (d.link) {
+      linkHTML = `<a href="${d.link}" target="_blank" style="display:inline-flex; align-items:center; gap:6px; margin-top:1rem; padding:0.5rem 1.2rem; border-radius:99px; font-size:0.8rem; font-weight:600; background:rgba(10,102,194,0.12); color:#0a66c2; border:1px solid rgba(10,102,194,0.2); text-decoration:none; transition:all 0.3s;">View on LinkedIn &rarr;</a>`;
+    }
+
+    document.getElementById('modalContent').innerHTML = `
+      <div class="modal-period">${d.tag}</div>
+      <div class="modal-role">${d.title}</div>
+      <p class="modal-desc">${d.desc}</p>
+      ${galleryHTML}
+      ${linkHTML}
+    `;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
 });
 
 /* ---- Mobile nav ---- */
